@@ -1,0 +1,535 @@
+{
+  "source": {
+    "document": "CTC Building Management System (BMS)",
+    "document_number": "162 600 16-1",
+    "date": "2023-09-26",
+    "addressing": "zero-based",
+    "function_code": 3,
+    "warning": "The document names EcoVent i350F, not i360F. Verify every candidate against the installed controller."
+  },
+  "registers": [
+    {
+      "address": 62000,
+      "key": "outdoor_temperature",
+      "name": "Outdoor temperature",
+      "category": "Temperatures",
+      "scale": 0.1,
+      "unit": "°C"
+    },
+    {
+      "address": 62001,
+      "key": "dhw_stop_temperature",
+      "name": "DHW stop temperature",
+      "category": "Hot water",
+      "scale": 0.1,
+      "unit": "°C"
+    },
+    {
+      "address": 62002,
+      "key": "dhw_outlet_setpoint",
+      "name": "DHW outlet-temperature setpoint",
+      "category": "Hot water",
+      "scale": 0.1,
+      "unit": "°C",
+      "uncertain": true,
+      "note": "The CTC BMS label is known, but the i360F scale is inferred from live raw 500 matching approximately 50.0 °C; verify against the display."
+    },
+    {
+      "address": 62003,
+      "key": "hot_water_temperature",
+      "name": "Hot-water temperature",
+      "category": "Hot water",
+      "scale": 0.1,
+      "unit": "°C",
+      "unavailable_raw": [
+        9999
+      ],
+      "note": "The live i360F returned raw 9999 when this value was not available."
+    },
+    {
+      "address": 62005,
+      "key": "controller_status",
+      "name": "Controller status",
+      "category": "Status",
+      "enum": {
+        "0": "HP upper",
+        "1": "HP lower",
+        "2": "Additional heat",
+        "3": "HP + additional heat",
+        "4": "Heating circuit",
+        "5": "DHW",
+        "6": "Pool",
+        "7": "Off",
+        "8": "Heating mix",
+        "9": "Wood",
+        "10": "DHW/heating circuit",
+        "11": "Cooling",
+        "12": "Swap"
+      }
+    },
+    {
+      "address": 62007,
+      "key": "primary_flow_setpoint",
+      "name": "Heating circuit 1 flow setpoint",
+      "category": "Heating circuit",
+      "scale": 0.1,
+      "unit": "°C"
+    },
+    {
+      "address": 62011,
+      "key": "primary_flow_temperature",
+      "name": "Heating circuit 1 flow temperature",
+      "category": "Heating circuit",
+      "scale": 0.1,
+      "unit": "°C"
+    },
+    {
+      "address": 62012,
+      "key": "heating_circuit_2_flow_temperature",
+      "name": "Heating circuit 2 flow temperature",
+      "category": "Heating circuit",
+      "scale": 0.1,
+      "unit": "°C",
+      "unavailable_raw": [
+        9999,
+        55537
+      ],
+      "note": "The live i360F returned signed -9999 (raw 55537) because heating circuit 2 is not available."
+    },
+    {
+      "address": 62015,
+      "key": "return_temperature",
+      "name": "Return temperature",
+      "category": "Heating circuit",
+      "scale": 0.1,
+      "unit": "°C",
+      "unavailable_raw": [
+        9999
+      ],
+      "note": "The live i360F returned raw 9999 when this value was not available."
+    },
+    {
+      "address": 62017,
+      "key": "heat_pump_status",
+      "name": "Heat pump A1 status",
+      "category": "Heat pump",
+      "enum": {
+        "0": "Off: start delay",
+        "1": "Off: ready to start",
+        "2": "Waiting for flow",
+        "3": "Heating",
+        "4": "Defrost",
+        "5": "Cooling",
+        "6": "Blocked",
+        "7": "Alarm",
+        "8": "Function test",
+        "30": "Not defined",
+        "31": "Compressor not enabled",
+        "32": "Communication error",
+        "33": "Charging DHW"
+      }
+    },
+    {
+      "address": 62027,
+      "key": "heat_pump_in_temperature",
+      "name": "Heat pump A1 inlet temperature",
+      "category": "Heat pump",
+      "scale": 0.1,
+      "unit": "°C"
+    },
+    {
+      "address": 62037,
+      "key": "heat_pump_out_temperature",
+      "name": "Heat pump A1 outlet temperature",
+      "category": "Heat pump",
+      "scale": 0.1,
+      "unit": "°C"
+    },
+    {
+      "address": 62047,
+      "key": "discharge_temperature",
+      "name": "Heat pump A1 discharge temperature",
+      "category": "Heat pump",
+      "scale": 0.1,
+      "unit": "°C"
+    },
+    {
+      "address": 62057,
+      "key": "suction_gas_temperature",
+      "name": "Heat pump A1 suction-gas temperature",
+      "category": "Heat pump",
+      "scale": 0.1,
+      "unit": "°C"
+    },
+    {
+      "address": 62067,
+      "key": "high_pressure",
+      "name": "Heat pump A1 high pressure",
+      "category": "Heat pump",
+      "scale": 0.1,
+      "unit": "bar"
+    },
+    {
+      "address": 62077,
+      "key": "low_pressure",
+      "name": "Heat pump A1 low pressure",
+      "category": "Heat pump",
+      "scale": 0.1,
+      "unit": "bar"
+    },
+    {
+      "address": 62087,
+      "key": "heat_pump_source_temperature_1",
+      "name": "Heat pump A1 brine-in temperature",
+      "category": "Heat pump",
+      "scale": 0.1,
+      "unit": "°C",
+      "uncertain": true,
+      "note": "The generic CTC BMS map calls this Brine in. It changed 7.8 to 8.4 °C, but that label is unverified for the EcoAir air-source heat pump."
+    },
+    {
+      "address": 62097,
+      "key": "heat_pump_source_temperature_2",
+      "name": "Heat pump A1 brine-out temperature",
+      "category": "Heat pump",
+      "scale": 0.1,
+      "unit": "°C",
+      "uncertain": true,
+      "note": "The generic CTC BMS map calls this Brine out. It changed 12.3 to 10.2 °C, but that label is unverified for the EcoAir air-source heat pump."
+    },
+    {
+      "address": 62107,
+      "key": "charge_pump",
+      "name": "Heat pump A1 charge pump",
+      "category": "Heat pump",
+      "scale": 0.1,
+      "unit": "%"
+    },
+    {
+      "address": 62117,
+      "key": "heat_pump_secondary_percentage",
+      "name": "Heat pump A1 brine pump",
+      "category": "Heat pump",
+      "scale": 0.1,
+      "unit": "%",
+      "uncertain": true,
+      "note": "The generic BMS name is Brine pump, but an EcoAir has no brine circuit. The live value changed 47.9 to 48.0%; determine its actual EcoAir meaning before automation."
+    },
+    {
+      "address": 62127,
+      "key": "heat_pump_fan",
+      "name": "Heat pump A1 fan",
+      "category": "Heat pump",
+      "scale": 0.1,
+      "unit": "%"
+    },
+    {
+      "address": 62137,
+      "key": "defrost_timer",
+      "name": "Heat pump A1 defrost timer",
+      "category": "Heat pump",
+      "note": "The official BMS label and the observed decrease from 30 to 18 support a live countdown; the time unit has not yet been verified.",
+      "uncertain": true
+    },
+    {
+      "address": 62147,
+      "key": "heat_pump_outdoor_temperature",
+      "name": "Heat pump A1 outdoor temperature",
+      "category": "Heat pump",
+      "scale": 0.1,
+      "unit": "°C"
+    },
+    {
+      "address": 62157,
+      "key": "heat_pump_software_version",
+      "name": "Heat pump A1 software version",
+      "category": "Identification"
+    },
+    {
+      "address": 62168,
+      "key": "immersion_heater_power",
+      "name": "Immersion-heater power",
+      "category": "Electrical",
+      "scale": 0.1,
+      "unit": "kW"
+    },
+    {
+      "address": 62170,
+      "key": "maximum_current",
+      "name": "Maximum measured current",
+      "category": "Electrical",
+      "scale": 0.1,
+      "unit": "A"
+    },
+    {
+      "address": 62171,
+      "key": "current_l1",
+      "name": "Current L1",
+      "category": "Electrical",
+      "scale": 0.1,
+      "unit": "A"
+    },
+    {
+      "address": 62172,
+      "key": "current_l2",
+      "name": "Current L2",
+      "category": "Electrical",
+      "scale": 0.1,
+      "unit": "A"
+    },
+    {
+      "address": 62173,
+      "key": "current_l3",
+      "name": "Current L3",
+      "category": "Electrical",
+      "scale": 0.1,
+      "unit": "A"
+    },
+    {
+      "address": 62176,
+      "key": "external_heat_source_temperature",
+      "name": "External heat-source temperature",
+      "category": "Temperatures",
+      "scale": 0.1,
+      "unit": "°C",
+      "unavailable_raw": [
+        9999,
+        55537
+      ],
+      "uncertain": true,
+      "note": "The generic CTC BMS map calls this EHS temperature. The live i360F returned signed -9999 because no external heat source is confirmed."
+    },
+    {
+      "address": 62180,
+      "key": "pool_stop_temperature",
+      "name": "Pool stop temperature",
+      "category": "Pool",
+      "scale": 0.1,
+      "unit": "°C",
+      "uncertain": true,
+      "note": "Official BMS label, but the installation has no confirmed pool; raw 220 may only be a stored default."
+    },
+    {
+      "address": 62186,
+      "key": "total_operation_counter",
+      "name": "Total operating-time counter",
+      "category": "Counters",
+      "signed": false,
+      "word_count": 2,
+      "word_order": "lsw_first",
+      "uncertain": true,
+      "note": "Official 32-bit LSB/MSB pair. Live value was 32065; the counter unit still needs comparison with the display."
+    },
+    {
+      "address": 62191,
+      "key": "immersion_heater_energy",
+      "name": "Immersion-heater energy",
+      "category": "Electrical",
+      "unit": "kWh"
+    },
+    {
+      "address": 62193,
+      "key": "compressor_speed",
+      "name": "Heat pump A1 compressor speed",
+      "category": "Heat pump",
+      "scale": 0.1,
+      "unit": "RPS"
+    },
+    {
+      "address": 62203,
+      "key": "room_temperature_1",
+      "name": "Room temperature 1",
+      "category": "Temperatures",
+      "scale": 0.1,
+      "unit": "°C"
+    },
+    {
+      "address": 62204,
+      "key": "room_temperature_2",
+      "name": "Room temperature 2",
+      "category": "Temperatures",
+      "scale": 0.1,
+      "unit": "°C",
+      "unavailable_raw": [
+        9999,
+        55537
+      ],
+      "note": "The live i360F returned signed -9999 (raw 55537), consistent with no second room sensor."
+    },
+    {
+      "address": 62214,
+      "key": "compressor_1_operation_counter",
+      "name": "Compressor 1 operating-time counter",
+      "category": "Counters",
+      "signed": false,
+      "word_count": 2,
+      "word_order": "lsw_first",
+      "uncertain": true,
+      "note": "Official 32-bit LSB/MSB pair. Live value was 16726; the counter unit still needs comparison with the display."
+    },
+    {
+      "address": 62234,
+      "key": "compressor_1_last_24h",
+      "name": "Compressor 1 operation during last 24 h",
+      "category": "Counters",
+      "uncertain": true,
+      "note": "Official BMS label. Live raw value was 250, but whether this is minutes or another h:m encoding has not yet been verified."
+    },
+    {
+      "address": 62244,
+      "key": "display_software_month_day",
+      "name": "Display software month/day",
+      "category": "Identification"
+    },
+    {
+      "address": 62245,
+      "key": "display_software_year",
+      "name": "Display software year",
+      "category": "Identification"
+    },
+    {
+      "address": 62246,
+      "key": "heating_circuit_1_status",
+      "name": "Heating circuit 1 status",
+      "category": "Heating circuit",
+      "enum": {
+        "0": "Heating off",
+        "1": "Vacation",
+        "2": "Night reduction",
+        "3": "On (normal mode)"
+      }
+    },
+    {
+      "address": 62253,
+      "key": "product_type",
+      "name": "Controller product type",
+      "category": "Identification"
+    },
+    {
+      "address": 62254,
+      "key": "heat_pump_type",
+      "name": "Heat pump A1 type",
+      "category": "Identification"
+    },
+    {
+      "address": 62264,
+      "key": "compressor_model",
+      "name": "Heat pump A1 compressor model",
+      "category": "Identification"
+    },
+    {
+      "address": 62274,
+      "key": "lower_tank_setpoint",
+      "name": "Lower-tank setpoint",
+      "category": "Hot water",
+      "scale": 0.1,
+      "unit": "°C"
+    },
+    {
+      "address": 62275,
+      "key": "dhw_lower_temperature",
+      "name": "Actual lower DHW temperature",
+      "category": "Hot water",
+      "scale": 0.1,
+      "unit": "°C"
+    },
+    {
+      "address": 62276,
+      "key": "dhw_actual_temperature",
+      "name": "Actual DHW temperature",
+      "category": "Hot water",
+      "scale": 0.1,
+      "unit": "°C"
+    },
+    {
+      "address": 62279,
+      "key": "dhw_capacity",
+      "name": "Current DHW capacity",
+      "category": "Hot water",
+      "scale": 0.1,
+      "unit": "%",
+      "unavailable_raw": [
+        9999
+      ],
+      "note": "The live i360F returned raw 9999 when this value was not available."
+    },
+    {
+      "address": 62280,
+      "key": "exhaust_fan_speed",
+      "name": "Exhaust-fan speed",
+      "category": "Ventilation",
+      "unit": "%"
+    },
+    {
+      "address": 62281,
+      "key": "highest_co2",
+      "name": "Highest measured CO₂",
+      "category": "Ventilation",
+      "unit": "ppm"
+    },
+    {
+      "address": 62282,
+      "key": "highest_humidity",
+      "name": "Highest measured humidity",
+      "category": "Ventilation",
+      "unit": "%"
+    },
+    {
+      "address": 62283,
+      "key": "filter_days_remaining",
+      "name": "Days until filter maintenance",
+      "category": "Ventilation",
+      "unit": "days"
+    },
+    {
+      "address": 62284,
+      "key": "night_cooling_status",
+      "name": "Ventilation night-cooling status",
+      "category": "Ventilation"
+    },
+    {
+      "address": 62291,
+      "key": "primary_system_flow",
+      "name": "Heat pump A1 primary-system flow",
+      "category": "Heat pump",
+      "scale": 0.1
+    },
+    {
+      "address": 62301,
+      "key": "smart_grid_mode",
+      "name": "Smart Grid mode",
+      "category": "Status",
+      "enum": {
+        "0": "None/normal",
+        "1": "Blocked",
+        "2": "Low price",
+        "3": "High capacity"
+      }
+    },
+    {
+      "address": 62302,
+      "key": "electricity_spot_price",
+      "name": "Electricity spot price",
+      "category": "Electricity price",
+      "word_count": 2,
+      "encoding": "decimal_pair_4",
+      "unit": "SEK/kWh",
+      "unavailable_raw": [
+        32767
+      ],
+      "uncertain": true,
+      "note": "Registers 62302 and 62303 are decoded as signed integer plus a four-decimal component. Raw (0, 7689) matched the published SE3 hourly price of 0.7689 SEK/kWh. Negative-price encoding has not yet been observed."
+    },
+    {
+      "address": 62304,
+      "key": "radiator_pump_1",
+      "name": "Radiator pump 1",
+      "category": "Heating circuit",
+      "signed": false,
+      "enum": {
+        "0": "Off",
+        "1": "On"
+      }
+    }
+  ]
+}

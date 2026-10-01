@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ctc-reader"
+version = "0.1.0"
+description = "Read-only Modbus TCP terminal reader for CTC EcoVent controllers"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "pymodbus>=3.15,<3.16",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<10",
+]
+
+[project.scripts]
+ctc-reader = "ctc_reader.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ctc_reader"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/ctc_reader/registers.json" = "ctc_reader/registers.json"
+
+[tool.pytest.ini_options]
+addopts = "-q"
+pythonpath = ["src"]
+testpaths = ["tests"]
